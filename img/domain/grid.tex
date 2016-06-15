@@ -1,0 +1,21 @@
+\begin{tikzpicture}%[every node/.style={draw,shape=circle,fill=black,scale=.2}]
+	\tikzstyle{dot} = [draw,shape=circle,fill=black,scale=.2]
+	\tikzstyle{field} = [fill=lightgray, solid]
+	%cells
+	\draw [field] (0, 0) ellipse (.5 and .5);
+	\draw[field] (0.8817,1.2135) arc (53.9987:90:1.5) -- (0,1.5) -- (90:2) -- (0,2) arc (90:54:2) -- cycle;
+	\draw[field] (-0.2939,0.4045) arc (126.0013:90:0.5) -- (90:0.5) -- (90:1.5) -- (0,1.5) arc (90:126:1.5) -- cycle;
+	
+	\draw[field] (-0.4755,-0.1545) arc (-161.9999:-198:0.5) -- (-1.4266,0.4635) arc (162.0011:198:1.5) -- cycle;
+	\draw[field] (-1.4266,0.4635) arc (162.0011:198:1.5) -- (-1.9021,-0.618) arc (-162.0008:-198:2) -- cycle;
+	
+	\draw[field] (0.4755,0.1545) arc (18.0001:-18:0.5) -- (1.4266,-0.4635) arc (-17.9989:18:1.5) -- cycle;
+	\draw[field] (1.4266,-0.4635) arc (-17.9989:18:1.5) -- (1.9021,0.618) arc (17.9992:-18:2) -- cycle;
+	%nodes
+	\node[dot] (v1) at (0,0) {};\node[dot] at (-1,0) {};\node[dot] (v6) at (-2,0) {};\node[dot] at (1,0) {};\node[dot] (v8) at (2,0) {};\node[dot] (v4) at (1.618,1.1756) {};\node[dot] (v3) at (0.618,1.9021) {};
+	\node[dot] at (-0.618,1.9021) {};\node[dot] (v2) at (-1.618,1.1756) {};\node[dot] at (-0.809,0.5878) {};\node[dot] at (-0.309,0.9511) {};\node[dot] at (0.309,0.9511) {};\node[dot] at (0.809,0.5878) {};
+	%labels 
+	
+	%mesh
+	\draw[dashed] (-2, 0) -- (2, 0) -- (2, 0) arc (0:180:2);\draw[dashed] (-1,0) arc (180:0:1);\draw[dashed] (v1) -- (v2);\draw[dashed] (v1) -- (108:2);\draw[dashed] (v1) -- (v3);\draw[dashed] (v1) -- (v4);
+\end{tikzpicture}
