@@ -13,9 +13,10 @@
 
 \DeclareSymbolFont{letters}{\encodingdefault}{\rmdefault}{m}{it}
 \usepackage{amsmath} % math symbols, new environments and stuff
+\usepackage{amssymb}
 %\usepackage{bm}
+
 \usepackage{unicode-math} % for changing math font and unicode symbols
-\usepackage{identfirst}
 \setmathfont{XITS Math}
 
 \parindent=1.5cm
@@ -81,21 +82,48 @@
 \define@key{blx@lbx}{langjapanese}{\blx@defstring{langjapanese}{#1}}
 \makeatother
 
-%algorithm2e
-\usepackage{algorithm2e}
-\SetKwInput{KwData}{Исходные параметры}
-\SetKwInput{KwResult}{Результат}
-\SetKwInput{KwIn}{Входные данные}
-\SetKwInput{KwOut}{Выходные данные}
-\SetKwIF{If}{ElseIf}{Else}{если}{тогда}{иначе если}{иначе}{конец условия}
-\SetKwFor{While}{до тех пор, пока}{выполнять}{конец цикла}
-\SetKw{KwTo}{от}
-\SetKw{KwRet}{возвратить}
-\SetKw{Return}{возвратить}
-\SetKwBlock{Begin}{начало блока}{конец блока}
-\SetKwSwitch{Switch}{Case}{Other}{Проверить значение}{и выполнить}{вариант}{в противном случае}{конец варианта}{конец проверки значений}
-\SetKwFor{For}{цикл}{выполнять}{конец цикла}
-\SetKwFor{ForEach}{для каждого}{выполнять}{конец цикла}
-\SetKwRepeat{Repeat}{повторять}{до тех пор, пока}
-\SetAlgorithmName{Рисунок}{рисунок}{Список алгоритмов}
+%algorithmic
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{framed}
 
+\makeatletter
+% because fuck algorithm env, that's why
+\renewenvironment{algorithm}[1][htpb]
+{
+	\begin{figure}[#1]
+	\begin{framed}
+}
+{
+	\end{framed}
+	\end{figure}
+}
+\makeatother
+
+\def\LCB{\{} %there are some issues with curly brackets inside algorithm(icx) environment
+\def\RCB{\}}
+\renewcommand{\algorithmicrequire}{\textbf{Необходимо}:} 
+\renewcommand{\algorithmicensure}{\textbf{Установить}:}
+\renewcommand{\algorithmicend}{\textbf{Конец}}
+\renewcommand{\algorithmicif}{\textbf{Если}}
+\renewcommand{\algorithmicthen}{\textbf{то}}
+\renewcommand{\algorithmicelse}{\textbf{Иначе}}
+\renewcommand{\algorithmicfor}{\textbf{Для}}
+\renewcommand{\algorithmicforall}{\textbf{Для каждого}}
+\renewcommand{\algorithmicdo}{\textbf{выполнять}:}
+\renewcommand{\algorithmicwhile}{\textbf{Пока}}
+\renewcommand{\algorithmicloop}{\textbf{Цикл}}
+\renewcommand{\algorithmicrepeat}{\textbf{Повторять}:}
+\renewcommand{\algorithmicuntil}{\textbf{Пока не}:}
+\renewcommand{\algorithmicreturn}{\textbf{Возвратить}}
+
+\newcommand{\algorithmicendif}{\textbf{Конец условия}}
+\newcommand{\algorithmicendfor}{\textbf{Конец цикла}}
+\newcommand{\algorithmicendwhile}{\textbf{Конец цикла}}
+\newcommand{\algorithmicendloop}{\textbf{Конец цикла}}
+
+% from algpseudocode.sty
+\algdef{SE}[WHILE]{While}{EndWhile}[1]{\algorithmicwhile\ #1\ \algorithmicdo}{\algorithmicendwhile}%
+\algdef{SE}[FOR]{For}{EndFor}[1]{\algorithmicfor\ #1\ \algorithmicdo}{\algorithmicendfor}%
+\algdef{SE}[LOOP]{Loop}{EndLoop}{\algorithmicloop}{\algorithmicendloop}%
+\algdef{SE}[IF]{If}{EndIf}[1]{\algorithmicif\ #1\ \algorithmicthen}{\algorithmicendif}%
